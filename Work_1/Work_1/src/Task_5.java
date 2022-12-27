@@ -7,6 +7,7 @@ import java.util.Scanner;
         calculation(inputEquation());
     }
 
+    // Ввод уравнения. Метод возвращает строку-уравнение.
     public static String inputEquation(){
         System.out.println("Введите уравнение вида a + b = c, где некоторые цифры числа a, b и c могут быть заменены знаком ?.");
         boolean flag = true;
@@ -29,6 +30,7 @@ import java.util.Scanner;
         return equation;
     }
 
+    //Вычисление неизвестных цифр. Метод выводит результат на экран.
     public static void calculation(String equation){
         
         int a = 0;
@@ -36,12 +38,14 @@ import java.util.Scanner;
         int c = 0;
         int count = 0;
 
+        // Замена всех знаков на пробел.
         equation = equation.replace("+", " ");
         equation = equation.replace("=", " ");
         
         String[] array = equation.split(" ");
         String[] array_equation = new String [3];
 
+        // Удаляем пустые элементы после split. [2?, '', '+'...] 
         for(int i = 0; i < array.length; i++){
             if(array[i] != ""){
                 array_equation[count] = array[i]; 
@@ -49,6 +53,7 @@ import java.util.Scanner;
             }
         }
 
+        // Перебираем цифры от 0 до 99. Для всех неизвестных, пока не найдем верное решение.
         for(int i = 0; i <= 99; i++){
             array_equation[0] = array_equation[0].replace('?', Integer.toString(i).charAt(0));
             a = Integer.parseInt(array_equation[0]);
